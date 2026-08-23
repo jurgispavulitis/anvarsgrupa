@@ -27,4 +27,18 @@ rsync -a --delete \
   --exclude='.well-known' \
   "$REPO_DIR"/ "$WEB_ROOT"/
 
-echo "Publicēts: $(git -C "$REPO_DIR" rev-parse --short HEAD) -> $WEB_ROOT"
+# ------------------------------------------------------------
+# Kešatmiņas apiešana (cache busting).
+# Cloudflare un pārlūki patur style.css un main.js kešatmiņā stundām ilgi,
+# tāpēc pēc izvietošanas apmeklētāji joprojām redzētu veco dizainu.
+# Pievienojot adresei ?v=<commit>, katra jauna versija ir JAUNA adrese, kuru
+# keša nav redzējusi. Avota faili repozitorijā paliek tīri — pārrakstām tikai
+# kopiju, kas jau aizgāja uz nginx mapi.
+# ------------------------------------------------------------
+VERSION="$(git -C "$REPO_DIR" rev-parse --short HEAD)"
+
+find "$WEB_ROOT" -name '*.html' -type f -print0 | xargs -0 sed -i \
+  -e "s|\(href=\"[^\"]*css/style\.css\)\"|\1?v=${VERSION}\"|g" \
+  -e "s|\(src=\"[^\"]*js/main\.js\)\"|\1?v=${VERSION}\"|g"
+
+echo "Publicēts: $VERSION -> $WEB_ROOT (resursi ar ?v=$VERSION)"
