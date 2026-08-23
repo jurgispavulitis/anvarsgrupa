@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANVARS GRUPA | Transporta pakalpojumi, zemes darbi, teritoriju sagatavošana</title>
+  <meta name="description" content="Transporta pakalpojumi, ceļu izbūve, zemes darbi, mežizstrāde, meliorācija un teritoriju sagatavošana visā Latvijā. SIA ANVARS GRUPA strādā ar savu tehniku.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="images/opt/logo.png">
+</head>
+<body>
+
+  <!-- =====================================================
+       GALVENE
+       ===================================================== -->
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="ANVARS GRUPA, uz sākumu">
+        <span class="brand-logo-wrap">
+          <img src="images/opt/logo.png" alt="ANVARS GRUPA logotips" class="brand-logo">
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">ANVARS GRUPA</span>
+          <span class="brand-line"></span>
+        </span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Galvenā navigācija">
+        <ul class="nav-list">
+          <li class="nav-item has-dropdown">
+            <button type="button" class="nav-link dropdown-toggle" aria-expanded="false">
+              Pakalpojumi <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown">
+              <li><a href="transporta-pakalpojumi/index.html">Transporta pakalpojumi</a></li>
+              <li><a href="celu-izbuve/index.html">Ceļu izbūve</a></li>
+              <li><a href="zemes-darbi/index.html">Zemes darbi</a></li>
+              <li><a href="mezizstrade/index.html">Mežizstrāde</a></li>
+              <li><a href="labiekartosanas-darbi/index.html">Labiekārtošanas darbi</a></li>
+              <li><a href="melioracijas-darbi/index.html">Meliorācijas darbi</a></li>
+              <li><a href="teritoriju-sagatavosana/index.html">Teritoriju sagatavošana</a></li>
+              <li><a href="demontaza/index.html">Demontāža</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="#par-mums" class="nav-link">Par mums</a></li>
+          <li class="nav-item"><a href="#galerija" class="nav-link">Galerija</a></li>
+          <li class="nav-item"><a href="#kontakti" class="nav-link">Kontakti</a></li>
+          <li class="nav-item nav-cta"><a href="#kontakti" class="btn">Saņemt piedāvājumu</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Atvērt izvēlni">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+  </header>
+
+
+  <!-- =====================================================
+       HERO
+       ===================================================== -->
+
+  <section class="hero">
+    <video class="hero-media" autoplay muted loop playsinline preload="metadata" poster="images/opt/hero.jpg">
+      <source src="images/opt/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <p class="kicker">Zemes darbi un teritoriju sagatavošana</p>
+        <h1>Tehnika un komanda <span class="accent">jūsu objektam</span></h1>
+        <p class="hero-lead">
+          Transporta pakalpojumi, ceļu izbūve, zemes darbi, mežizstrāde,
+          meliorācija un teritoriju sagatavošana visā Latvijā.
+        </p>
+        <div class="hero-actions">
+          <a href="#kontakti" class="btn">Saņemt piedāvājumu</a>
+          <a href="https://wa.me/37122000134?text=Labdien!%20V%C4%93los%20sa%C5%86emt%20konsult%C4%81ciju%20par%20ANVARS%20GRUPA%20pakalpojumiem."
+             class="btn btn--wa" target="_blank" rel="noopener">
+            <svg viewBox="0 0 32 32" aria-hidden="true" fill="currentColor">
+              <path d="M16.1 4.2c-6.4 0-11.6 5.2-11.6 11.5 0 2.2.6 4.2 1.7 6l-1.8 6.1 6.4-1.7c1.7 1 3.5 1.3 5.4 1.3 6.4 0 11.6-5.2 11.6-11.5S22.5 4.2 16.1 4.2zm0 21.2c-1.7 0-3.4-.5-4.8-1.3l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.6-1.4-3.4-1.4-5.2 0-5.3 4.3-9.6 9.7-9.6s9.7 4.3 9.7 9.6-4.4 9.7-9.9 9.7zm5.4-7.2c-.2-.1-1.8-.8-2-.9-.2-.1-.5-.1-.7.1-.2.4-.8 1-1 1.2-.1.2-.4.2-.6.1-.2-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.7-1.6-1.9-.1-.2 0-.5.1-.6.1-.1.2-.4.5-.5.1-.1.2-.2.4-.5.1-.1 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.2.2-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4.7.4 1.3.5 1.7.6.7.2 1.3.1 1.8.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.4-.2-.6-.3z"/>
+            </svg>
+            Rakstīt WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <span class="hero-scroll" aria-hidden="true"></span>
+  </section>
+
+
+  <!-- =====================================================
+       STATISTIKA
+       ===================================================== -->
+
+  <section class="stats-band" aria-label="Uzņēmuma rādītāji">
+    <div class="container stats-grid">
+      <div class="stat" data-reveal>
+        <span class="stat-num" data-count="10" data-suffix="+">0</span>
+        <span class="stat-label">Gadu pieredze <span class="ph-note">Precizēt</span></span>
+      </div>
+      <div class="stat" data-reveal style="--reveal-delay: 0.1s">
+        <span class="stat-num" data-count="200" data-suffix="+">0</span>
+        <span class="stat-label">Realizēti projekti <span class="ph-note">Precizēt</span></span>
+      </div>
+      <div class="stat" data-reveal style="--reveal-delay: 0.2s">
+        <span class="stat-num" data-count="8">0</span>
+        <span class="stat-label">Pakalpojumu virzieni</span>
+      </div>
+      <div class="stat" data-reveal style="--reveal-delay: 0.3s">
+        <span class="stat-num" data-count="100" data-suffix="%">0</span>
+        <span class="stat-label">Darba zona: visa Latvija</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       PAKALPOJUMI
+       ===================================================== -->
+
+  <section id="pakalpojumi" class="section">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="kicker">Ko mēs darām</p>
+        <h2>Mūsu pakalpojumi</h2>
+        <p>No teritorijas attīrīšanas līdz gatavam ceļam. Visus darbus veicam ar savu tehniku un saviem operatoriem.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <article class="service-card" data-reveal>
+          <div class="card-media">
+            <span class="card-num">01</span>
+            <img src="images/opt/transports1-thumb.jpg" alt="ANVARS GRUPA kravas auto ar puspiekabi" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Transporta pakalpojumi</h3>
+            <p>Materiālu, tehnikas un kravu pārvadājumi būvniecības un zemes darbu projektiem.</p>
+            <span class="card-link">Uzzināt vairāk <span class="arrow">→</span></span>
+          </div>
+          <a class="card-cover-link" href="transporta-pakalpojumi/index.html" aria-label="Transporta pakalpojumi"></a>
+        </article>
+
+        <article class="service-card" data-reveal style="--reveal-delay: 0.06s">
+          <div class="card-media">
+            <span class="card-num">02</span>
+            <img src="images/opt/transports28-thumb.jpg" alt="Materiālu piegāde objektā" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Ceļu izbūve</h3>
+            <p>Grants ceļu, piebraucamo ceļu, laukumu un būvlaukumu piekļuves sagatavošana.</p>
+            <span class="card-link">Uzzināt vairāk <span class="arrow">→</span></span>
+          </div>
+          <a class="card-cover-link" href="celu-izbuve/index.html" aria-label="Ceļu izbūve"></a>
+        </article>
+
+        <article class="service-card" data-reveal style="--reveal-delay: 0.12s">
+          <div class="card-media">
+            <span class="card-num">03</span>
+            <img src="images/opt/raksana1-thumb.jpg" alt="Ekskavators un pašizgāzējs zemes darbos" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Zemes darbi</h3>
+            <p>Rakšanas, līdzināšanas, planēšanas un citi zemes darbi dažāda apjoma objektiem.</p>
+            <span class="card-link">Uzzināt vairāk <span class="arrow">→</span></span>
+          </div>
+          <a class="card-cover-link" href="zemes-darbi/index.html" aria-label="Zemes darbi"></a>
+        </article>
+
+        <article class="service-card" data-reveal style="--reveal-delay: 0.18s">
+          <div class="card-media">
+            <span class="card-num">04</span>
+            <img src="images/opt/mezizstrade1-thumb.jpg" alt="Meža tehnika krauj zarus un apaugumu" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Mežizstrāde</h3>
+            <p>Koku, krūmu un apauguma novākšana, teritoriju attīrīšana un sagatavošana turpmākiem darbiem.</p>
+            <span class="card-link">Uzzināt vairāk <span class="arrow">→</span></span>
+          </div>
+          <a class="card-cover-link" href="mezizstrade/index.html" aria-label="Mežizstrāde"></a>
+        </article>
+
+        <article class="service-card" data-reveal>
+          <div class="card-media">
+            <span class="card-num">05</span>
+            <img src="images/opt/Aizupes12-thumb.jpg" alt="Labiekārtota teritorija ar dīķi" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Labiekārtošanas darbi</h3>
+            <p>Teritoriju sakopšana, izlīdzināšana un labiekārtošana pēc klienta ieceres.</p>
+            <span class="card-link">Uzzināt vairāk <span class="arrow">→</span></span>
+          </div>
+          <a class="card-cover-link" href="labiekartosanas-darbi/index.html" aria-label="Labiekārtošanas darbi"></a>
+        </article>
+
+        <article class="service-card" data-reveal style="--reveal-delay: 0.06s">
+          <div class="card-media">
+            <span class="card-num">06</span>
+            <img src="images/opt/melioracija1-thumb.jpg" alt="Izrakts meliorācijas grāvis" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Meliorācijas darbi</h3>
+            <p>Ūdens novadīšanas, grāvju, drenāžas un teritoriju nosusināšanas risinājumi.</p>
+            <span class="card-link">Uzzināt vairāk <span class="arrow">→</span></span>
+          </div>
+          <a class="card-cover-link" href="melioracijas-darbi/index.html" aria-label="Meliorācijas darbi"></a>
+        </article>
+
+        <article class="service-card" data-reveal style="--reveal-delay: 0.12s">
+          <div class="card-media">
+            <span class="card-num">07</span>
+            <img src="images/opt/sagatavosana1-thumb.jpg" alt="Sagatavota teritorija no putna lidojuma" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Teritoriju sagatavošana</h3>
+            <p>Krūmu, celmu, būvgružu un nevajadzīgas veģetācijas novākšana pirms būvniecības.</p>
+            <span class="card-link">Uzzināt vairāk <span class="arrow">→</span></span>
+          </div>
+          <a class="card-cover-link" href="teritoriju-sagatavosana/index.html" aria-label="Teritoriju sagatavošana"></a>
+        </article>
+
+        <article class="service-card" data-reveal style="--reveal-delay: 0.18s">
+          <div class="card-media">
+            <span class="card-num">08</span>
+            <img src="images/opt/transports20-thumb.jpg" alt="Materiālu iekraušana un savākšana" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Demontāža</h3>
+            <p>Nelielu būvju, konstrukciju un objektu demontāža, materiālu savākšana un teritorijas sakopšana.</p>
+            <span class="card-link">Uzzināt vairāk <span class="arrow">→</span></span>
+          </div>
+          <a class="card-cover-link" href="demontaza/index.html" aria-label="Demontāža"></a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       PROCESS
+       ===================================================== -->
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="kicker">Vienkārši un skaidri</p>
+        <h2>Kā mēs strādājam</h2>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step" data-reveal>
+          <span class="step-num">1</span>
+          <h3>Sazinieties ar mums</h3>
+          <p>Piezvaniet, uzrakstiet WhatsApp vai e-pastu. Pastāstiet, kādi darbi jāveic un kur atrodas objekts.</p>
+        </div>
+        <div class="process-step" data-reveal style="--reveal-delay: 0.12s">
+          <span class="step-num">2</span>
+          <h3>Apskate un piedāvājums</h3>
+          <p>Izbraucam apskatīt objektu, novērtējam apjomu un nosaucam cenu. Piedāvājumā ir redzams, par ko maksājat.</p>
+        </div>
+        <div class="process-step" data-reveal style="--reveal-delay: 0.24s">
+          <span class="step-num">3</span>
+          <h3>Darbu izpilde</h3>
+          <p>Veicam darbus ar savu tehniku norunātajā termiņā un nododam sakoptu objektu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       PAR MUMS
+       ===================================================== -->
+
+  <section id="par-mums" class="section section--light">
+    <div class="container about-grid">
+      <div class="about-text" data-reveal>
+        <p class="kicker">Par mums</p>
+        <h2>Par ANVARS GRUPA</h2>
+        <span class="ph-note">Tekstu precizēs pasūtītājs</span>
+        <p>
+          Veicam transporta pakalpojumus, zemes darbus, ceļu izbūvi, mežizstrādi,
+          meliorāciju, labiekārtošanu, teritoriju sagatavošanu un demontāžu.
+          Strādājam ar privātpersonām, uzņēmumiem un attīstītājiem.
+        </p>
+        <p>
+          Tehnika un operatori ir mūsu pašu, tāpēc darbus varam sākt ātri.
+          Apjoms nav ierobežojums: rokam gan tranšeju piemājas dārzā,
+          gan sagatavojam laukumu attīstības projektam.
+        </p>
+        <ul class="about-points">
+          <li>Sava tehnika un aprīkojums</li>
+          <li>Visi darbi pie viena izpildītāja</li>
+          <li>Strādājam visā Latvijā</li>
+          <li>Skaidrs piedāvājums pirms darbu sākšanas</li>
+        </ul>
+      </div>
+      <div class="about-media" data-reveal style="--reveal-delay: 0.15s">
+        <img src="images/opt/transports9.jpg" alt="ANVARS GRUPA kravas automašīnas saulrietā" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       GALERIJA
+       ===================================================== -->
+
+  <section id="galerija" class="section">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="kicker">Mūsu darbi</p>
+        <h2>Galerija</h2>
+      </div>
+
+      <div class="gallery-grid" data-reveal>
+        <button type="button" class="gallery-item" data-full="images/opt/transports1.jpg">
+          <img src="images/opt/transports1-thumb.jpg" alt="Kravas auto ar puspiekabi saulrietā" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" data-full="images/opt/raksana1.jpg">
+          <img src="images/opt/raksana1-thumb.jpg" alt="Ekskavators un pašizgāzējs objektā" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" data-full="images/opt/mezizstrade1.jpg">
+          <img src="images/opt/mezizstrade1-thumb.jpg" alt="Meža tehnika darbā ziemā" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" data-full="images/opt/melioracija1.jpg">
+          <img src="images/opt/melioracija1-thumb.jpg" alt="Jaunizbūvēts meliorācijas grāvis" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" data-full="images/opt/Aizupes12.jpg">
+          <img src="images/opt/Aizupes12-thumb.jpg" alt="Labiekārtota teritorija ar dīķi" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" data-full="images/opt/sagatavosana1.jpg">
+          <img src="images/opt/sagatavosana1-thumb.jpg" alt="Sagatavota teritorija no augšas" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" data-full="images/opt/transports23.jpg">
+          <img src="images/opt/transports23-thumb.jpg" alt="Kravas automašīnas bāzē" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" data-full="images/opt/transports20.jpg">
+          <img src="images/opt/transports20-thumb.jpg" alt="Kravas iekraušana ar autoiekrāvēju" loading="lazy">
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       KONTAKTI
+       ===================================================== -->
+
+  <section id="kontakti" class="section section--light">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="kicker">Kontakti</p>
+        <h2>Sazinieties ar mums</h2>
+        <p>Izvēlieties sev ērtāko saziņas veidu, un mēs sagatavosim piedāvājumu jūsu darbiem.</p>
+      </div>
+
+      <div class="contact-grid">
+        <a class="contact-card contact-card--wa" data-reveal
+           href="https://wa.me/37122000134?text=Labdien!%20V%C4%93los%20sa%C5%86emt%20konsult%C4%81ciju%20par%20ANVARS%20GRUPA%20pakalpojumiem."
+           target="_blank" rel="noopener">
+          <span class="contact-icon">
+            <svg viewBox="0 0 32 32" aria-hidden="true" fill="#1fbd5a">
+              <path d="M16.1 4.2c-6.4 0-11.6 5.2-11.6 11.5 0 2.2.6 4.2 1.7 6l-1.8 6.1 6.4-1.7c1.7 1 3.5 1.3 5.4 1.3 6.4 0 11.6-5.2 11.6-11.5S22.5 4.2 16.1 4.2zm0 21.2c-1.7 0-3.4-.5-4.8-1.3l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.6-1.4-3.4-1.4-5.2 0-5.3 4.3-9.6 9.7-9.6s9.7 4.3 9.7 9.6-4.4 9.7-9.9 9.7zm5.4-7.2c-.2-.1-1.8-.8-2-.9-.2-.1-.5-.1-.7.1-.2.4-.8 1-1 1.2-.1.2-.4.2-.6.1-.2-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.7-1.6-1.9-.1-.2 0-.5.1-.6.1-.1.2-.4.5-.5.1-.1.2-.2.4-.5.1-.1 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.2.2-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4.7.4 1.3.5 1.7.6.7.2 1.3.1 1.8.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.4-.2-.6-.3z"/>
+            </svg>
+          </span>
+          <h3>WhatsApp</h3>
+          <span class="contact-value">+371&nbsp;22&nbsp;000&nbsp;134</span>
+          <p>Ātrākais veids. Uzrakstiet, un atbildēsim, tiklīdz varēsim.</p>
+          <span class="card-link">Rakstīt WhatsApp <span class="arrow">→</span></span>
+        </a>
+
+        <a class="contact-card" data-reveal style="--reveal-delay: 0.1s" href="tel:+37122000134">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#c2943f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/>
+            </svg>
+          </span>
+          <h3>Tālrunis</h3>
+          <span class="contact-value">+371&nbsp;22&nbsp;000&nbsp;134</span>
+          <p>Zvaniet darba dienās. Pārrunāsim darbus un vienosimies par objekta apskati.</p>
+          <span class="card-link">Zvanīt tagad <span class="arrow">→</span></span>
+        </a>
+
+        <a class="contact-card" data-reveal style="--reveal-delay: 0.2s" href="mailto:info@anvarsgrupa.lv?subject=Konsult%C4%81cijas%20piepras%C4%ABjums">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#c2943f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-10 7L2 7"/>
+            </svg>
+          </span>
+          <h3>E-pasts</h3>
+          <span class="contact-value">info@anvarsgrupa.lv</span>
+          <p>Aprakstiet, kas jāizdara, un piedāvājumu atsūtīsim uz jūsu e-pastu.</p>
+          <span class="card-link">Rakstīt e-pastu <span class="arrow">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       KĀJENE
+       ===================================================== -->
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="brand" aria-label="ANVARS GRUPA, uz sākumu">
+          <span class="brand-logo-wrap">
+            <img src="images/opt/logo.png" alt="ANVARS GRUPA logotips" class="brand-logo">
+          </span>
+          <span class="brand-text">
+            <span class="brand-name">ANVARS GRUPA</span>
+            <span class="brand-line"></span>
+          </span>
+        </a>
+        <p>Transporta pakalpojumi, zemes darbi un teritoriju sagatavošana visā Latvijā.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Pakalpojumi</h3>
+        <a href="transporta-pakalpojumi/index.html">Transporta pakalpojumi</a>
+        <a href="celu-izbuve/index.html">Ceļu izbūve</a>
+        <a href="zemes-darbi/index.html">Zemes darbi</a>
+        <a href="mezizstrade/index.html">Mežizstrāde</a>
+        <a href="labiekartosanas-darbi/index.html">Labiekārtošanas darbi</a>
+        <a href="melioracijas-darbi/index.html">Meliorācijas darbi</a>
+        <a href="teritoriju-sagatavosana/index.html">Teritoriju sagatavošana</a>
+        <a href="demontaza/index.html">Demontāža</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Uzņēmums</h3>
+        <a href="index.html#par-mums">Par uzņēmumu</a>
+        <a href="index.html#pakalpojumi">Mūsu pakalpojumi</a>
+        <a href="index.html#galerija">Galerija</a>
+        <a href="index.html#kontakti">Kontakti</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Kontakti</h3>
+        <p><strong>Tālrunis:</strong> <a href="tel:+37122000134">+371&nbsp;22&nbsp;000&nbsp;134</a></p>
+        <p><strong>E-pasts:</strong> <a href="mailto:info@anvarsgrupa.lv">info@anvarsgrupa.lv</a></p>
+        <p><strong>Darba zona:</strong> visa Latvija</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© <span data-year>2026</span> SIA ANVARS GRUPA. Visas tiesības aizsargātas.</p>
+        <p>Reģ. Nr.: <span class="ph-note">Papildinās pasūtītājs</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
