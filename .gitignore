@@ -1,6 +1,10 @@
 .DS_Store
 *.zip
 .claude/
-.DS_Store
-*.zip
-.claude/
+node_modules/
+_deploy/
+
+# Oriģinālie, neoptimizētie mediji (~255 MB) paliek tikai lokāli.
+# Vietne izmanto tikai images/opt/, un TĀ tiek versionēta.
+/images/*
+!/images/opt/

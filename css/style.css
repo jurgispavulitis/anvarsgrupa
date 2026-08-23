@@ -770,7 +770,8 @@ h1, h2, h3, h4 {
     border-color 0.3s var(--ease);
 }
 
-.service-card:hover {
+.service-card:hover,
+.service-card:focus-within {
   transform: translateY(-6px);
   box-shadow: var(--shadow-card-hover);
   border-color: rgba(var(--yellow-rgb), 0.7);
@@ -791,9 +792,32 @@ h1, h2, h3, h4 {
   filter: saturate(0.95) brightness(0.94);
 }
 
-.service-card:hover .card-media img {
+.service-card:hover .card-media img,
+.service-card:focus-within .card-media img {
   transform: scale(1.06);
   filter: saturate(1.05) brightness(1);
+}
+
+/* Uzbraucot uz kartītes — plūstoši parādās krāsains plīvurs pāri attēlam */
+
+.card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    155deg,
+    rgba(var(--yellow-rgb), 0.34) 0%,
+    rgba(var(--blue-rgb), 0.6) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+}
+
+.service-card:hover .card-media::after,
+.service-card:focus-within .card-media::after {
+  opacity: 1;
 }
 
 .card-num {
@@ -851,11 +875,13 @@ h1, h2, h3, h4 {
   transition: transform 0.25s var(--ease);
 }
 
-.service-card:hover .card-link {
+.service-card:hover .card-link,
+.service-card:focus-within .card-link {
   color: var(--yellow-dark);
 }
 
-.service-card:hover .card-link .arrow {
+.service-card:hover .card-link .arrow,
+.service-card:focus-within .card-link .arrow {
   transform: translateX(4px);
 }
 
@@ -986,9 +1012,15 @@ h1, h2, h3, h4 {
 
 .about-media {
   position: relative;
+  /* Savs slāņu konteksts: bez tā nobīdītais rāmis pēc atklāšanās animācijas
+     aizslīd zem sekcijas fona un pazūd */
+  isolation: isolate;
 }
 
 .about-media img {
+  position: relative;
+  z-index: 1;
+  display: block;
   width: 100%;
   border-radius: var(--radius);
   box-shadow: var(--shadow-card-hover);
@@ -1002,7 +1034,7 @@ h1, h2, h3, h4 {
   inset: 18px -18px -18px 18px;
   border: 3px solid rgba(var(--yellow-rgb), 0.55);
   border-radius: var(--radius);
-  z-index: -1;
+  z-index: 0;
 }
 
 @media (max-width: 899px) {

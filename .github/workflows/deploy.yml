@@ -1,0 +1,90 @@
+# ============================================================
+#  Automātiskā izvietošana uz OCI (Oracle Cloud) servera
+#
+#  Kad:   katrā push uz `main` (vai manuāli no Actions cilnes).
+#  Kā:    1) pārbauda HTML un JS;
+#         2) pieslēdzas serverim pa SSH;
+#         3) serveris pats pavelk jauno versiju no GitHub
+#            (izmantojot deploy atslēgu) un publicē to nginx mapē.
+#
+#  Vajadzīgie noslēpumi (Settings -> Secrets and variables -> Actions):
+#    OCI_HOST     - servera publiskā IP adrese, piem. 130.61.12.34
+#    OCI_USER     - SSH lietotājs: `ubuntu` (Ubuntu) vai `opc` (Oracle Linux)
+#    OCI_SSH_KEY  - PRIVĀTĀ atslēga, ar ko GitHub drīkst ienākt serverī
+#                   (viss saturs, ieskaitot -----BEGIN/END----- rindas)
+# ============================================================
+
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:        # poga manuālai palaišanai Actions cilnē
+
+# Divi izvietojumi vienlaikus nedrīkst darboties
+concurrency:
+  group: deploy-oci
+  cancel-in-progress: false
+
+jobs:
+
+  # ---------- 1. darbs: pārbaudes ----------
+  parbaudes:
+    name: Pārbaudes (HTML + JS)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Paņem repozitorija saturu
+        uses: actions/checkout@v4
+
+      - name: Uzstāda Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: HTML validācija
+        run: npx --yes html-validate index.html */index.html
+
+      - name: JS sintakses pārbaude
+        run: node --check js/main.js
+
+  # ---------- 2. darbs: izvietošana ----------
+  izvietosana:
+    name: Izvietošana uz OCI
+    needs: parbaudes          # startē tikai tad, ja pārbaudes izgāja cauri
+    runs-on: ubuntu-latest
+    steps:
+      # Kamēr noslēpumi nav pievienoti, izvietošanu izlaiž (nevis krīt ar kļūdu)
+      - name: Pārbauda, vai noslēpumi ir pievienoti
+        id: check
+        env:
+          HOST: ${{ secrets.OCI_HOST }}
+        run: |
+          if [ -z "$HOST" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Noslēpumi OCI_HOST/OCI_USER/OCI_SSH_KEY vēl nav pievienoti — izvietošana izlaista. Skat. DEPLOY.md 7. sadaļu."
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Sagatavo SSH atslēgu
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.OCI_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.OCI_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Serveris pavelk jauno versiju un publicē
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes \
+            "${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }}" \
+            'set -e
+             cd ~/anvarsgrupa
+             git fetch --prune origin
+             git reset --hard origin/main
+             bash scripts/deploy.sh'
+
+      - name: Gatavs
+        if: steps.check.outputs.ready == 'true'
+        run: echo "Vietne atjaunota -> http://${{ secrets.OCI_HOST }}/"
