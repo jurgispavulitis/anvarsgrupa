@@ -34,12 +34,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Paņem repozitorija saturu
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Uzstāda Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: HTML validācija
         run: npx --yes html-validate index.html */index.html
