@@ -72,7 +72,19 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s\n' "${{ secrets.OCI_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H "${{ secrets.OCI_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+          # ssh-keyscan mēdz reizēm neatbildēt; bez atkārtojumiem `bash -e`
+          # nogāztu visu soli tikai tāpēc, ka tīkls uz mirkli nočīkstēja.
+          for i in 1 2 3; do
+            if ssh-keyscan -T 10 -H "${{ secrets.OCI_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null; then
+              break
+            fi
+            echo "ssh-keyscan mēģinājums $i neizdevās, atkārto..."
+            sleep 5
+          done
+          if ! grep -q . ~/.ssh/known_hosts; then
+            echo "::error::Neizdevās nolasīt servera atslēgu. Pārbaudi OCI_HOST un vai 22. ports ir atvērts Security List sarakstā."
+            exit 1
+          fi
 
       - name: Serveris pavelk jauno versiju un publicē
         if: steps.check.outputs.ready == 'true'
