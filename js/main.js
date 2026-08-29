@@ -10,12 +10,17 @@
   var navToggle = document.querySelector(".nav-toggle");
   var siteNav = document.querySelector(".site-nav");
   var desktopMq = window.matchMedia("(min-width: 900px)");
+  var mobileBar = document.querySelector(".mobile-bar");
 
   /* ---------- Galvene: ēna pēc ritināšanas ---------- */
 
   function onScroll() {
     if (header) {
       header.classList.toggle("is-scrolled", window.scrollY > 10);
+    }
+    // Josla netraucē, kamēr redzams hero; parādās, tiklīdz tas aizritināts.
+    if (mobileBar) {
+      mobileBar.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.6);
     }
   }
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -215,6 +220,122 @@
       if (e.key === "ArrowLeft") show(current - 1);
       if (e.key === "ArrowRight") show(current + 1);
     });
+  }
+
+  /* ---------- Pieprasījuma vednis (WhatsApp) ---------- */
+
+  var wizard = document.querySelector(".quote-wizard");
+
+  if (wizard) {
+    var panels = Array.prototype.slice.call(
+      wizard.querySelectorAll("[data-qw-panel]")
+    );
+    var stepEl = wizard.querySelector("[data-qw-step]");
+    var progressEl = wizard.querySelector("[data-qw-progress]");
+    var backBtn = wizard.querySelector("[data-qw-back]");
+    var nextBtn = wizard.querySelector("[data-qw-next]");
+    var sendBtn = wizard.querySelector("[data-qw-send]");
+    var summaryEl = wizard.querySelector("[data-qw-summary]");
+    var phone = wizard.getAttribute("data-qw-phone") || "";
+    var answers = [];
+    var step = 0;
+    var lastIndex = panels.length - 1;
+    var questionCount = lastIndex;
+
+    // Bez JS vednis vispār neparādās, tāpēc atslēpjam to tikai tagad.
+    wizard.hidden = false;
+
+    function answerOf(i) {
+      return answers[i] || "";
+    }
+
+    function composeMessage() {
+      var lines = ["Labdien! Vēlos saņemt piedāvājumu.", ""];
+      panels.forEach(function (panel, i) {
+        var key = panel.getAttribute("data-qw-key");
+        if (key && answerOf(i)) lines.push(key + ": " + answerOf(i));
+      });
+      return lines.join("\n");
+    }
+
+    function render() {
+      panels.forEach(function (panel, i) {
+        panel.hidden = i !== step;
+      });
+
+      var onSummary = step === lastIndex;
+
+      if (stepEl) {
+        stepEl.textContent = onSummary
+          ? "Kopsavilkums"
+          : step + 1 + " / " + questionCount;
+      }
+      if (progressEl) {
+        progressEl.style.width = ((step + 1) / panels.length) * 100 + "%";
+      }
+
+      if (backBtn) backBtn.hidden = step === 0;
+      if (nextBtn) {
+        nextBtn.hidden = onSummary;
+        nextBtn.textContent =
+          step === questionCount - 1 ? "Skatīt kopsavilkumu" : "Tālāk";
+        var optional = panels[step].hasAttribute("data-qw-optional");
+        nextBtn.disabled = !optional && !answerOf(step);
+      }
+      if (sendBtn) sendBtn.hidden = !onSummary;
+
+      if (onSummary) {
+        var msg = composeMessage();
+        if (summaryEl) summaryEl.textContent = msg;
+        if (sendBtn) {
+          sendBtn.href =
+            "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+        }
+      }
+
+      var heading = panels[step].querySelector(".qw-q");
+      if (heading) heading.focus();
+    }
+
+    function go(to) {
+      step = Math.max(0, Math.min(lastIndex, to));
+      render();
+    }
+
+    panels.forEach(function (panel, i) {
+      // Izvēles pogas: atzīmē atbildi un pēc mirkļa pati pāriet tālāk.
+      panel.querySelectorAll(".qw-chip").forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          panel.querySelectorAll(".qw-chip").forEach(function (other) {
+            other.setAttribute("aria-pressed", other === chip ? "true" : "false");
+          });
+          answers[i] = chip.getAttribute("data-qw-value") || chip.textContent.trim();
+          if (nextBtn) nextBtn.disabled = false;
+          setTimeout(function () {
+            if (step === i) go(i + 1);
+          }, 260);
+        });
+      });
+
+      // Teksta lauks: atbilde nav obligāta, tāpēc "Tālāk" paliek aktīva.
+      var input = panel.querySelector("input[type='text']");
+      if (input) {
+        input.addEventListener("input", function () {
+          answers[i] = input.value.trim();
+        });
+        input.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            go(i + 1);
+          }
+        });
+      }
+    });
+
+    if (backBtn) backBtn.addEventListener("click", function () { go(step - 1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { go(step + 1); });
+
+    render();
   }
 
   /* ---------- Kājenes gads ---------- */

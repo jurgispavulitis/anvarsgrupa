@@ -15,6 +15,9 @@
   --blue-rgb: 6, 24, 39;
   --yellow: #d7a84f;
   --yellow-dark: #c2943f;
+  /* Zelts uz balta fona ir 2.2:1 — par maz tekstam. Šis tonis dod 4.76:1,
+     tāpēc teksts lieto to, bet dekoratīvās svītras paliek spilgti zeltā. */
+  --gold-text: #946c16;
   --yellow-rgb: 215, 168, 79;
   --white: #ffffff;
   --text: #22282e;
@@ -122,12 +125,19 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: var(--yellow);
+  color: var(--gold-text);
   font-weight: 800;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 3px;
   margin-bottom: 14px;
+}
+
+.hero .kicker,
+.page-hero .kicker,
+.section--dark .kicker,
+.cta-band .kicker {
+  color: var(--yellow);
 }
 
 .kicker::before {
@@ -170,7 +180,7 @@ h1, h2, h3, h4 {
 .ph-note {
   display: inline-block;
   border: 1px dashed var(--yellow);
-  color: var(--yellow-dark);
+  color: var(--gold-text);
   background: rgba(var(--yellow-rgb), 0.08);
   font-size: 0.68rem;
   font-weight: 800;
@@ -210,6 +220,19 @@ h1, h2, h3, h4 {
   background: var(--yellow-dark);
   border-color: var(--yellow-dark);
   transform: translateY(-2px);
+}
+
+/* Neaktīva poga (vednī, kamēr nav atbildes) — citādi tā izskatās spiežama */
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  transform: none;
 }
 
 .btn--outline {
@@ -877,7 +900,7 @@ h1, h2, h3, h4 {
 
 .service-card:hover .card-link,
 .service-card:focus-within .card-link {
-  color: var(--yellow-dark);
+  color: var(--gold-text);
 }
 
 .service-card:hover .card-link .arrow,
@@ -1628,4 +1651,280 @@ h1, h2, h3, h4 {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+}
+
+
+/* =====================================================
+   15. MOBILĀ ĀTRĀS SAZIŅAS JOSLA
+   Parādās pēc hero ritināšanas; tikai šaurajos ekrānos.
+   ===================================================== */
+
+.mobile-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 880;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  border-top: 3px solid var(--yellow);
+  transform: translateY(110%);
+  transition: transform 0.35s var(--ease);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.mobile-bar.is-visible {
+  transform: translateY(0);
+}
+
+/* Kamēr atvērta izvēlne vai lightbox, josla netraucē */
+
+body.menu-locked .mobile-bar {
+  transform: translateY(110%);
+}
+
+.mobile-bar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 15px 10px;
+  background: var(--blue);
+  color: var(--white);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.mobile-bar-btn svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+.mobile-bar-btn--wa {
+  background: var(--wa-green);
+  color: #05301c;
+}
+
+@media (min-width: 900px) {
+  .mobile-bar {
+    display: none;
+  }
+}
+
+/* Vieta joslai, lai tā nenosegtu kājenes beigas */
+
+@media (max-width: 899px) {
+  body {
+    padding-bottom: 58px;
+  }
+}
+
+
+/* =====================================================
+   16. PIEPRASĪJUMA VEDNIS (aizpilda WhatsApp ziņu)
+   ===================================================== */
+
+.quote-wizard {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--wa-green);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: clamp(24px, 4vw, 38px);
+  margin-bottom: clamp(26px, 4vw, 40px);
+}
+
+.qw-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.qw-head h3 {
+  font-size: var(--fs-h3);
+  color: var(--blue);
+}
+
+.qw-sub {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  max-width: 46ch;
+}
+
+.qw-step {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: var(--gold-text);
+  flex-shrink: 0;
+}
+
+.qw-progress {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  margin: 20px 0 26px;
+  overflow: hidden;
+}
+
+.qw-progress-bar {
+  display: block;
+  height: 100%;
+  width: 20%;
+  background: var(--yellow);
+  border-radius: 2px;
+  transition: width 0.35s var(--ease);
+}
+
+.qw-panel[hidden] {
+  display: none;
+}
+
+.qw-q {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 1rem + 0.8vw, 1.45rem);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--blue);
+  margin-bottom: 18px;
+}
+
+.qw-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .qw-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.qw-chip {
+  text-align: left;
+  padding: 14px 16px;
+  background: var(--light-bg);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.94rem;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.qw-chip:hover {
+  border-color: rgba(var(--yellow-rgb), 0.8);
+  background: var(--white);
+}
+
+.qw-chip[aria-pressed="true"] {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+}
+
+.qw-field {
+  display: block;
+}
+
+.qw-field input {
+  width: 100%;
+  padding: 15px 16px;
+  background: var(--light-bg);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.qw-field input:focus {
+  outline: none;
+  border-color: var(--yellow);
+  background: var(--white);
+}
+
+.qw-hint {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Kopsavilkums — priekšskatījums ziņai, kas aizies uz WhatsApp */
+
+.qw-summary {
+  background: var(--light-bg);
+  border-left: 4px solid var(--wa-green);
+  border-radius: 6px;
+  padding: 18px 20px;
+  font-size: 0.94rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  color: var(--text);
+}
+
+.qw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.qw-actions .btn {
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .qw-actions .btn {
+    flex: 0 0 auto;
+  }
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+.btn--ghost:hover {
+  background: var(--light-bg);
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.btn[hidden],
+.qw-actions a[hidden] {
+  display: none;
+}
+
+/* Kājenes sociālo tīklu vietturis, kamēr nav īsto adrešu */
+
+.social-pending {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-pending span:not(.ph-note) {
+  display: inline-flex;
+  padding: 10px 15px;
+  border: 1px dashed rgba(255, 255, 255, 0.28);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.85rem;
+  font-weight: 700;
 }
